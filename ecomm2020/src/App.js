@@ -1,9 +1,13 @@
 import React from "react";
-import logo from "./logo.svg";
+import HomePage from "./Homepage.component.jsx";
 import "./App.css";
 
 function App() {
-  return <div>Hello World</div>;
+  return (
+    <div>
+      <HomePage />
+    </div>
+  );
 }
 
 export default App;
