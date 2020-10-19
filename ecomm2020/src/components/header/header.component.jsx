@@ -2,6 +2,9 @@ import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { ReactComponent as Logo } from "../../assets/crown.svg";
+import { selectCurrentUser } from "../../redux/user/user-selector";
+import { selectToggleHidden } from "../../redux/cart/cart-selector";
+import { createStructuredSelector } from "reselect";
 import { auth } from "../../firebase/firebase.utils";
 import CartIcon from "../cart-icon/cart-icon.component";
 import CartDropDown from "../cart-dropdown/cart-dropdown.component";
@@ -36,12 +39,9 @@ const Header = ({ currentUser, TOGGLE_HIDDEN }) => (
   </div>
 );
 
-const mapStateToProps = ({
-  user: { currentUser },
-  cart: { TOGGLE_HIDDEN }
-}) => ({
-  currentUser,
-  TOGGLE_HIDDEN
+const mapStateToProps = createStructuredSelector({
+  currentUser: selectCurrentUser,
+  TOGGLE_HIDDEN: selectToggleHidden
 });
 
 export default connect(mapStateToProps)(Header);
