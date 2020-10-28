@@ -10,5 +10,4 @@ const ShopPage = ({ match }) => (
     <Route exact path={`${match.path}/:categoryID`} component={Collection} />
   </div>
 );
-
 export default ShopPage;
