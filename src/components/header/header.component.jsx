@@ -1,6 +1,5 @@
 import React from "react";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
 import { ReactComponent as Logo } from "../../assets/crown.svg";
 import { selectCurrentUser } from "../../redux/user/user-selector";
 import { selectToggleHidden } from "../../redux/cart/cart-selector";
