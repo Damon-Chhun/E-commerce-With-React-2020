@@ -52,6 +52,21 @@ export const addCollectionAndDocument = async (collectionKey, objectsToAdd) => {
   return await batch.commit();
 };
 
+export const convertCollectionsToMap = snapshop => {
+  const convertedCollection = snapshop.docs.map(doc => {
+    const { title, items } = doc.data();
+
+    return {
+      id: doc.id,
+      title,
+      routeName: encodeURI(title.toLowerCase()),
+      items
+    };
+  });
+  console.log(convertedCollection);
+  return convertedCollection;
+};
+
 firebase.initializeApp(config);
 
 export const auth = firebase.auth();
