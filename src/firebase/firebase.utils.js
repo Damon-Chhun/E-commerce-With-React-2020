@@ -63,8 +63,11 @@ export const convertCollectionsToMap = snapshop => {
       items
     };
   });
-  console.log(convertedCollection);
-  return convertedCollection;
+
+  return convertedCollection.reduce((accumulator, collection) => {
+    accumulator[collection.title.toLowerCase()] = collection;
+    return accumulator;
+  }, {});
 };
 
 firebase.initializeApp(config);

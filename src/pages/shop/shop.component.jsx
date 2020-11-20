@@ -7,16 +7,21 @@ import {
   firestore,
   convertCollectionsToMap
 } from "../../firebase/firebase.utils";
+import { connect } from "react-redux";
+import { UpdateShopData } from "../../redux/shop/shop.actions";
 
 class ShopPage extends React.Component {
   unsubscribeFromSnapshop = null;
 
   componentDidMount() {
+    const { UpdateShopData } = this.props;
     const collectionRef = firestore.collection("collections");
 
     collectionRef.onSnapshot(async snapshop => {
       console.log(snapshop);
-      convertCollectionsToMap(snapshop);
+
+      const collectionMap = convertCollectionsToMap(snapshop);
+      UpdateShopData(collectionMap);
     });
   }
 
@@ -34,4 +39,9 @@ class ShopPage extends React.Component {
     );
   }
 }
-export default ShopPage;
+
+const mapDispatchToProps = dispatch => ({
+  UpdateShopData: collectionMap => dispatch(UpdateShopData(collectionMap))
+});
+
+export default connect(null, mapDispatchToProps)(ShopPage);
