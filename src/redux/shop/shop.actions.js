@@ -21,7 +21,7 @@ export const fetchingCollectionStartAsync = () => {
         const collectionMap = convertCollectionsToMap(snapshop);
         dispatch(fetchingCollectionSuccess(collectionMap));
       })
-      .catch(dispatch(fetchingCollectionFailure(error)));
+      .catch(error => dispatch(fetchingCollectionFailure(error.message)));
   };
 };
 
